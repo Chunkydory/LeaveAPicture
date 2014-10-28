@@ -1,0 +1,60 @@
+@import url(http://fonts.googleapis.com/css?family=Pacifico);
+#canvasDiv{
+	background-color: seashell;
+	border-radius: 12px;
+	padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 800px;
+
+}
+
+#color_menu {
+	margin-left: auto;
+	margin-right: auto;
+	width: 200px;
+}
+
+h1 {
+	color: navy;
+	font-family: Pacifico;
+	font-size: 6em;
+	text-align: center;
+}
+#black_clr{
+	display: inline-block;
+	background-color: black;	
+	border: 1px solid black;
+	border-radius: 12px;
+	width: 3em;
+	height: 3em;
+}
+
+#red_clr{
+	display: inline-block;
+	background-color: red;	
+	border: 1px solid red;
+	border-radius: 12px;
+	width: 3em;
+	height: 3em;
+}
+
+#green_clr{
+	display: inline-block;
+	background-color: green;	
+	border: 1px solid green;
+	border-radius: 12px;	
+	width: 3em;
+	height: 3em;
+}
+
+#blue_clr{
+	display: inline-block;
+	background-color: blue;	
+	border: 1px solid blue;
+	border-radius: 12px;
+	width: 3em;
+	height: 3em;
+}
