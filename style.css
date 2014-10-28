@@ -58,3 +58,19 @@ h1 {
 	width: 3em;
 	height: 3em;
 }
+
+#size_menu{
+	display: inline-block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 200px;
+}
+
+.sizeBlock{
+	display: inline-block;
+	background-color: red;
+	border: 1px solid red;
+	border-radius: 12px;
+	width: 3em;
+	height: 3em;
+}

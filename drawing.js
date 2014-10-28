@@ -1,73 +1,102 @@
+////////// Globals ////////////
+var pixelX = new Array();
+var pixelY = new Array();
 
-var colorPurple = "#cb3594";
-var colorGreen = "#659b41";
-var colorYellow = "#ffcf33";
-var colorBrown = "#986928";
+var drawing;
 
-var curColor = colorPurple;
-var clickColor = new Array();
-
-var clickX = new Array();
-var clickY = new Array();
-var clickDrag = new Array();
-var paint;
+var color = "black";
+var pixWidth = 3;
 
 context = document.getElementById('canvasDiv').getContext("2d");
-$('#canvasDiv').mousedown(function(e)
+/////// GUI stuff /////////
+$("#black_clr").click(function()
 {
-	paint = true;
-	addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop);
-	redraw();
+	console.log("Clicked!");
+	color = "black";
 });
 
-$('#canvasDiv').mousemove(function(e)
+$("#red_clr").click(function()
 {
-	if(paint)
+	console.log("Clicked!");
+	color = "red";
+});
+
+$("#green_clr").click(function()
+{
+	console.log("Clicked!");
+	color = "green";
+});
+
+$("#blue_clr").click(function()
+{
+	console.log("Clicked!");
+	color = "blue";
+});
+
+$("#size_one").click(function()
+{
+	pixWidth = 3;
+	console.log("Clicked size_one");
+});
+
+$("#size_two").click(function()
+{
+	pixWidth = 10;
+	console.log("Clicked size_two");
+});
+
+$("#size_three").click(function()
+{
+	pixWidth = 15;
+	console.log("Clicked size_three");
+});
+
+$("#canvasDiv").mousedown(function(event)
+{
+	drawing = true;
+	pixelX.push(event.pageX - this.offsetLeft);
+	pixelY.push(event.pageY - this.offsetTop);
+	draw();
+	
+});
+
+$("#canvasDiv").mouseup(function()
+{
+	drawing = false;
+	dragging = false;
+	pixelX = [];
+	pixelY = [];
+});
+
+$("#canvasDiv").mousemove(function(event)
+{
+	if(drawing)
 	{
-		addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true);
-		redraw();
+		dragging = true;
+		pixelX.push(event.pageX - this.offsetLeft);
+		pixelY.push(event.pageY - this.offsetTop);
+		draw();
+		pixelX = [];
+		pixelY =[];
 	}
 });
 
-$('#canvasDiv').mouseup(function(e) 
+function draw()
 {
-	paint = false;
-});
-
-$('#canvasDiv').mouseleave(function(e)
-{
-	paint = false;
-});
-
-function addClick(x, y, dragging)
-{
-	clickX.push(x);
-	clickY.push(y);
-	clickDrag.push(dragging);
-	clickColor.push(curColor);
-}
-
-function redraw()
-{
-	context.clearRect(0,0, context.canvas.width, context.canvas.height);
-	
-	context.lineJoin = "round";
-	context.lineWidth = 5;
-	
-	for (var i=0; i < clickX.length; i++)
-	{
-		context.beginPath();
-		if(clickDrag[i] && i)
+		for(var i = 0; i < pixelX.length; i++)
 		{
-			context.moveTo(clickX[i-1], clickY[i-1]);
+			context.beginPath();
+			context.moveTo(pixelX[i] - 1, pixelY[i] - 1 );
+			//context.lineTo(pixelX[i], pixelY[i]);
+			context.arc(pixelX[i],pixelY[i],pixWidth, 0, 2*Math.PI);
+			context.closePath();
+			context.fillStyle = color;
+			context.fill();
+			context.lineWidth = pixWidth;
+			context.strokeStyle = color;
+			context.stroke();
 		}
-		else
-		{
-			context.moveTo(clickX[i]-1, clickY[i]);
-		}
-		context.lineTo(clickX[i], clickY[i]);
-		context.closePath();
-		context.strokeStyle = clickColor[i];
-		context.stroke();
-	}
+
+
+	
 }
