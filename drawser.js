@@ -57,7 +57,7 @@ function draw(x, y)
 		}
 ;
 		
-	console.log(x + " " + y);
+	//console.log(x + " " + y);
 }
 
 function saveFile()
